@@ -1,0 +1,11 @@
+mastodon.py
+*token.secret
+token.secret
+alfie.token.secret
+uni.token.secret
+config.json
+.env
+README.md
+.github
+uni.py
+alfie.py

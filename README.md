@@ -1,0 +1,1 @@
+posts a random image of [alfie](https://twitter.com/goodboyalfie) or [uni](https://twitter.com/unicouniuni3) via github actions. currently running on [s0ap.bsky.social](https://bsky.app/profile/did:plc:cyt4bxfmtrmawwbhwajwacau)

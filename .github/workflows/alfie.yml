@@ -1,0 +1,33 @@
+name: post alfie
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+  schedule:
+    - cron: "0 3,6,9,12,15,18,21 * * *"
+jobs:
+  post:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v3
+    - name: set up python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - name: set up environment variables
+      run: |
+        echo "BSKY_APP_PASSWORD=${{ secrets.BSKY_APP_PASSWORD }}" >> $GITHUB_ENV
+        echo "BSKY_HANDLE=${{ secrets.BSKY_HANDLE }}" >> $GITHUB_ENV
+    - name: install dependencies
+      run: pip install atproto wand && sudo apt-get install imagemagick
+    - name: post to bluesky
+      run: for i in {1..5}; do python alfie.py && break || sleep 15; done # retries on fail
+    - name: add and commit
+      uses: EndBug/add-and-commit@v9
+      with:
+        add: "alfie"
+        pull: "--rebase --autostash ."
+        message: "[automated] rename image"
+        default_author: github_actions
