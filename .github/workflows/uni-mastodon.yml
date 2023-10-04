@@ -19,8 +19,12 @@ jobs:
     - name: set up environment variables
       run: |
         echo "MASTODON_INSTANCE=${{ secrets.MASTODON_INSTANCE }}" >> $GITHUB_ENV
+<<<<<<< HEAD
         echo "UNI_MASTODON_TOKEN=${{ secrets.UNI_MASTODON_TOKEN }}" >> $GITHUB_ENV
         echo "$UNI_MASTODON_INSTANCE" >> uni.token.secret
+=======
+        echo "UNI_MASTODON_TOKEN=${{ secrets.UNI_MASTODON_TOKEN" >> uni.token.secret
+>>>>>>> e2f8976 (i'm just trying shit at this point)
     - name: install dependencies
       run: pip install Mastodon.py
     - name: post to mastodon
