@@ -19,11 +19,11 @@ jobs:
     - name: set up environment variables
       run: |
         echo "MASTODON_INSTANCE=${{ secrets.MASTODON_INSTANCE }}" >> $GITHUB_ENV
-        printf "$UNI_MASTODON_TOKEN" >> uni.token.secret
+        echo "UNI_MASTODON_TOKEN" >> uni.token.secret
     - name: install dependencies
       run: pip install Mastodon.py
     - name: post to mastodon
-      run: for i in {1..5}; do python uni-mastodon.py && break || sleep 15; done # retries on fail
+      run: python uni-mastodon.py
     - name: update log
       uses: EndBug/add-and-commit@v9
       with:
