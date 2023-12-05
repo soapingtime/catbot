@@ -10,6 +10,9 @@ timeout 120s gallery-dl "nitter:$uni_url"
 # less time because it's an inactive account
 timeout 45s gallery-dl "nitter:$alfie_url"
 
+# remove any partially downloaded files and move the new files
+rm gallery-dl/*/unicouniuni3/*.part
+rm gallery-dl/*/goodboyalfie/*.part
 mv gallery-dl/*/unicouniuni3/* uni/
 mv gallery-dl/*/goodboyalfie/* alfie/
 
