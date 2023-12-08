@@ -13,11 +13,14 @@ timeout 45s gallery-dl "nitter:$alfie_url"
 # remove any partially downloaded files and move the new files
 rm gallery-dl/*/unicouniuni3/*.part
 rm gallery-dl/*/goodboyalfie/*.part
+rm gallery-dl/*/unicouniuni3/*.ytdl
+rm gallery-dl/*/goodboyalfie/*.ytdl
 mv gallery-dl/*/unicouniuni3/* uni/
 mv gallery-dl/*/goodboyalfie/* alfie/
 
 rm -rf gallery-dl
 
 git pull
+git add .
 git commit -am "[automated] update images"
 git push -u
