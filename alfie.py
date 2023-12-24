@@ -45,10 +45,5 @@ def main():
 
     print('posted', random_image)
 
-    # after successfully posting, rename the image to stop reposts
-    new_image_name = os.path.join(folder_path, 'posted_' + os.path.basename(random_image))
-    os.rename(random_image, new_image_name)
-
-
 if __name__ == '__main__':
     main()

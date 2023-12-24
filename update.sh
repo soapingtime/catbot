@@ -5,7 +5,8 @@
 uni_url=$(curl https://twiiit.com/unicouniuni3 -s -L -I -o /dev/null -w '%{url_effective}')
 alfie_url=$(curl https://twiiit.com/goodboyalfie -s -L -I -o /dev/null -w '%{url_effective}')
 
-# save images for 2 minutes, then automatically cancel. prefix with nitter: to use an instance that isn't in the gallery-dl list
+# save images for 2 minutes, then automatically cancel. is there a more elegant way to do this? probably. i don't care that much though
+# prefixed with nitter: to use an instance that isn't in the gallery-dl list
 timeout 120s gallery-dl "nitter:$uni_url"
 # less time because it's an inactive account
 timeout 45s gallery-dl "nitter:$alfie_url"
