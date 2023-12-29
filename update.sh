@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# get urls from twiiit.com. they do most of the work for filtering out ratelimited/dead instances
+# get urls from twiiit.com. does most of the work for filtering out ratelimited/dead instances
 
 uni_url=$(curl https://twiiit.com/unicouniuni3 -s -L -I -o /dev/null -w '%{url_effective}')
 alfie_url=$(curl https://twiiit.com/goodboyalfie -s -L -I -o /dev/null -w '%{url_effective}')
