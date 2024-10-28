@@ -43,7 +43,7 @@ def main():
         if random_int <= 40:
             post_text = 'big boobs'
         elif random_int == 10000:
-            post_text = 'huge boobs. enormous boobs. gigantic bahonkadonks.'
+            post_text = 'huge boobs. enormous boobs. gigantic boobs.'
 
         client.send_image(
             text=post_text, image=img_data, image_alt=f'photo of a cat, from twitter.com/unicouniuni3'
