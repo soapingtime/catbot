@@ -10,7 +10,7 @@ def resize_image(random_image):
     with Image(filename=random_image) as img:
         image_size = os.path.getsize(random_image)
         if image_size > max_size:
-            img.compression_quality = 70
+            img.compression_quality = 80
             img.save(filename=random_image)
 
 def post_image(client, img_data, alt_text, aspect_ratio):
