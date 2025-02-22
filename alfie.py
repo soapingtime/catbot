@@ -38,6 +38,11 @@ def main():
     with open(random_image, 'rb') as f:
         img_data = f.read()
 
+        pillow_image = Image.open(random_image)
+        w, h = random_image.size
+    
+        aspect_ratio = models.AppBskyEmbedDefs.AspectRatio(height=h, width=w)
+
         status = random_image.split('/')[-1].split('_')[0]
         client.send_image(
             text='', image=img_data, image_alt=f'photo of a cat, from twitter.com/goodboyalfie/status/{status}'

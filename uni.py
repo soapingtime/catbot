@@ -1,3 +1,4 @@
+# dawg why the hell did i split this into 2 scripts
 import os
 import random
 from datetime import datetime
@@ -44,6 +45,12 @@ def main():
             post_text = 'big boobs'
         elif random_int == 10000:
             post_text = 'huge boobs. enormous boobs. gigantic boobs.'
+
+
+        pillow_image = Image.open(random_image)
+        w, h = random_image.size
+    
+        aspect_ratio = models.AppBskyEmbedDefs.AspectRatio(height=h, width=w)
 
         client.send_image(
             text=post_text, image=img_data, image_alt=f'photo of a cat, from twitter.com/unicouniuni3'
