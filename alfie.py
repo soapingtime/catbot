@@ -38,8 +38,13 @@ def main():
     with open(random_image, 'rb') as f:
         img_data = f.read()
 
-        pillow_image = Image.open(random_image)
-        w, h = random_image.size
+        # TODO: refactor the whole damn thing. complete spaghetti.
+        # learn what a function is. fuck you.
+        # "quick and dirty" only works when bluesky doesn't magically
+        # forget how to calculate their own aspect ratios.
+        with Image(filename=random_image) as img:
+            w = img.width
+            h = img.height
     
         aspect_ratio = models.AppBskyEmbedDefs.AspectRatio(height=h, width=w)
 
