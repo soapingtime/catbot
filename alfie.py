@@ -4,8 +4,7 @@ from datetime import datetime
 from wand.image import Image
 from atproto import Client, models
 
-max_size = 900 * 1024  # 900 KB in bytes
-
+max_size = 1000000 # 1 million bytes
 
 def resize_image(random_image):
     with Image(filename=random_image) as img:
@@ -14,6 +13,13 @@ def resize_image(random_image):
             img.compression_quality = 70
             img.save(filename=random_image)
 
+def post_image(client, img_data, alt_text, aspect_ratio):
+    client.send_image(
+        text="",
+        image=img_data,
+        image_alt=alt_text,
+        image_aspect_ratio=aspect_ratio
+    )
 
 def main():
     client = Client()
@@ -38,20 +44,16 @@ def main():
     with open(random_image, 'rb') as f:
         img_data = f.read()
 
-        # TODO: refactor the whole damn thing. complete spaghetti.
-        # learn what a function is. fuck you.
-        # "quick and dirty" only works when bluesky doesn't magically
-        # forget how to calculate their own aspect ratios.
         with Image(filename=random_image) as img:
             w = img.width
             h = img.height
     
         aspect_ratio = models.AppBskyEmbedDefs.AspectRatio(height=h, width=w)
 
-        status = random_image.split('/')[-1].split('_')[0]
-        client.send_image(
-            text='', image=img_data, image_alt=f'photo of a cat, from twitter.com/goodboyalfie/status/{status}'
-        )
+        twitter_status_number = random_image.split('/')[-1].split('_')[0]
+        alt_text = f'photo of a cat, from x.com/goodboyalfie/status/{twitter_status_number}'
+
+        post_image(client, img_data, alt_text, aspect_ratio)
 
     print('posted', random_image)
 

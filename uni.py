@@ -5,9 +5,7 @@ from datetime import datetime
 from wand.image import Image
 from atproto import Client, models
 
-max_size = 900 * 1024  # 900 KB in bytes
-
-# checks image size and resizes if it's over 900 KB (bluesky's max size)
+max_size = 1000000 # 1 million bytes
 
 def resize_image(random_image):
     with Image(filename=random_image) as img:
@@ -15,6 +13,14 @@ def resize_image(random_image):
         if image_size > max_size:
             img.compression_quality = 70
             img.save(filename=random_image)
+
+def post_image(client, img_data, alt_text, aspect_ratio):
+    client.send_image(
+        text="",
+        image=img_data,
+        image_alt=alt_text,
+        image_aspect_ratio=aspect_ratio
+    )
 
 def main():
     client = Client()
@@ -40,7 +46,6 @@ def main():
 
         # 4 percent chance to make the post say 'big boobs'
         random_int = random.randint(1, 1000)
-        post_text = ''
         if random_int <= 40:
             post_text = 'big boobs'
         elif random_int == 10000:
@@ -55,10 +60,9 @@ def main():
             h = img.height
     
         aspect_ratio = models.AppBskyEmbedDefs.AspectRatio(height=h, width=w)
+        alt_text = f'photo of a cat, from x.com/unicouniuni3'
 
-        client.send_image(
-            text=post_text, image=img_data, image_alt=f'photo of a cat, from twitter.com/unicouniuni3'
-        )
+        post_image(client, img_data, alt_text, aspect_ratio)
 
     print('posted', random_image)
 
