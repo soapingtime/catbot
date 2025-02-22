@@ -3,7 +3,7 @@ import os
 import random
 from datetime import datetime
 from wand.image import Image
-from atproto import Client
+from atproto import Client, models
 
 max_size = 900 * 1024  # 900 KB in bytes
 
